@@ -13,7 +13,8 @@
   ]
   "require": {
     "php": ">=5.5.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-Zend OPcache": "*"
   },
   "autoload": {
     "psr-4": {"Opcache\\": "src/"}
