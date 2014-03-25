@@ -4,7 +4,7 @@ namespace Opcache;
 
 class Status {
 
-  $this->result = [];
+  public $result = [];
 
   public function __construct() {
   }
@@ -36,8 +36,16 @@ class Status {
         $this->result['scripts'][] = $val;
       }
 
+      // Sort by memory consumption
+      usort($this->result['scripts'], function($a, $b) {
+        if ($a["memory_consumption"] == $b["memory_consumption"]) return 0;
+        return ($a["memory_consumption"] < $b["memory_consumption"]) ? 1 : -1;
+      });
+
     }
 
     $this->result['status'] = $raw;
+
+    return json_encode($this->result);
   }
 }
