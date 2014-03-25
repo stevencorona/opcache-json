@@ -2,7 +2,7 @@
   "name": "stevencorona/opcache-json",
   "description": "output zend opcache stats over json",
   "license": "MIT",
-  "type": "library"
+  "type": "library",
   "require": {
     "php": ">=5.5.0"
   },
