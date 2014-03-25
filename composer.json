@@ -3,6 +3,14 @@
   "description": "output zend opcache stats over json",
   "license": "MIT",
   "type": "library",
+  "authors": [
+    {
+      "name": "Steve Corona",
+      "email": "hello@scalingphpbook.com",
+      "homepage": "http://scalingphpbook.com",
+      "role": "Developer"
+    }
+  ]
   "require": {
     "php": ">=5.5.0"
   },
