@@ -2,11 +2,11 @@
   "name": "stevencorona/opcache-json",
   "description": "output zend opcache stats over json",
   "license": "MIT",
+  "type": "library"
   "require": {
     "php": ">=5.5.0"
   },
   "autoload": {
-    "files": ["opcache"],
-    "psr-0": {"Opcache": "src/"}
+    "psr-4": {"Opcache\\": "src/"}
   }
 }
