@@ -1,6 +1,7 @@
 {
   "name": "stevencorona/opcache-json",
   "description": "output zend opcache stats over json",
+  "license": "MIT",
   "require": {
     "php": ">=5.5.0"
   }
