@@ -4,9 +4,16 @@ namespace Opcache;
 
 class Status {
 
+  public $statsd  = null;
   public $result = [];
 
-  public function __construct() {
+  public function __construct($options_or_block=false) {
+    // Try to create a statsd handler via block or options
+    if (is_callable($options_or_block)) {
+      $this->statsd = $options_or_block();
+    } elseif(is_array($options_or_block)) {
+      $this->create_statsd_handle($options_or_block);
+    }
   }
 
   public function configuration() {
@@ -20,6 +27,9 @@ class Status {
     if (! extension_loaded("Zend OPcache")) {
       return json_encode([]);
     }
+
+    // Clear out data from prevous run
+    $this->result['status'] = null;
 
     $raw = \opcache_get_status($with_scripts);
 
@@ -52,6 +62,41 @@ class Status {
 
     $this->result['status'] = $raw;
 
+    if ($this->statsd != null) {
+      $this->send_to_statsd();
+    }
+
     return json_encode($this->result);
   }
+
+  protected function send_to_statsd() {
+    foreach($this->result["status"]["memory_usage"] as $k => $v) {
+      $this->statsd->gauge($k, $v);
+    }
+
+    foreach($this->result["status"]["opcache_statistics"] as $k => $v) {
+      $this->statsd->gauge($k, $v);
+    }
+  }
+
+  protected function create_statsd_handle($opts) {
+    // Set default statsd options
+    $default = ["host"       => "127.0.0.1",
+                "port"       => 8125,
+                "timeout"    => null,
+                "persistent" => false,
+                "namespace"  => "opcache"];
+
+
+    $opts = array_merge($opts, $default);
+
+    $connection = new \Domnikl\Statsd\Connection\Socket($opts["host"],
+                                                        $opts["port"],
+                                                        $opts["timeout"],
+                                                        $opts["persistent"]);
+
+    $this->statsd = new \Domnikl\Statsd\Client($connection, $opts["namespace"]);
+
+  }
+
 }
