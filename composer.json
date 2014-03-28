@@ -1,6 +1,7 @@
 {
   "name": "stevencorona/opcache-json",
-  "description": "output zend opcache stats over json",
+  "description": "Library that grabs some critical stats from Zend Opcache and
+  outputs to JSON for monitoring and alerting. Can also output to statsd sink.",
   "license": "MIT",
   "type": "library",
   "authors": [
