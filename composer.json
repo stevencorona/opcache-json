@@ -10,13 +10,13 @@
       "homepage": "http://scalingphpbook.com",
       "role": "Developer"
     }
-  ]
+  ],
   "require": {
     "php": ">=5.5.0",
     "ext-json": "*",
-    "ext-Zend OPcache": "*"
+    "domnikl/statsd": "*"
   },
   "autoload": {
-    "psr-4": {"Opcache\\": "src/"}
+    "psr-4": {"Opcache\\": "src/Opcache"}
   }
 }
