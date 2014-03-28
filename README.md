@@ -31,7 +31,8 @@ The best way to install it is to use Composer and add the following to your proj
       return new \Domnikl\Statsd\Client($c, "opcache");
     
     });
-
+    
+    echo $opcache->status(true);
 
 ## Statsd Output
 
@@ -62,7 +63,3 @@ Statsd output comes stock. Just configure your connection by passing a block or 
 The JSON output is easy to ready and can be exposed as an internal HTTP endpoint, which can be consumed by human eyes or a monitoring systems. It's pretty straightforward— the output looks like this</p>
 
 ![JSON Output](http://stevencorona.github.io/opcache-json/images/screenshot.png)
-
-
-
-    echo $opcache->status(true);
