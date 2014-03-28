@@ -1,8 +1,21 @@
 <?php
 
-include "src/opcache/status.php";
+require 'vendor/autoload.php';
 
-$opcache = new Opcache\Status;
+// By default Statsd output is disabled
+// $opcache = new Opcache\Status;
+
+// Or pass in Statsd config with an array
+// $opcache = new Opcache\Status(["host" => "localhost", "port" => "8125"]);
+
+// Or configure the Statsd connection with a block
+$opcache = new Opcache\Status(function() {
+
+  $c   = new \Domnikl\Statsd\Connection\Socket("127.0.0.1", "8125");
+  return new \Domnikl\Statsd\Client($c, "opcache");
+  
+});
+
 echo $opcache->status(true);
 
 // Run something like:
