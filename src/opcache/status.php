@@ -15,7 +15,13 @@ class Status {
   }
 
   public function status($with_scripts = false) {
-    $raw = opcache_get_status($with_scripts);
+
+    // Guard execution if the extension is not loaded.
+    if (! extension_loaded("Zend OPcache")) {
+      return json_encode([]);
+    }
+
+    $raw = \opcache_get_status($with_scripts);
 
     // The scripts output has a really non-optimal format
     // for JSON, the result is a hash with the full path
