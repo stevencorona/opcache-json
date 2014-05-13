@@ -13,9 +13,11 @@ $opcache = new Opcache\Status(function() {
 
   $c   = new \Domnikl\Statsd\Connection\Socket("127.0.0.1", "8125");
   return new \Domnikl\Statsd\Client($c, "opcache");
-  
+
 });
 
+// This will output the opcache status AND send it to statsd if previously
+// configured
 echo $opcache->status(true);
 
 // Run something like:
