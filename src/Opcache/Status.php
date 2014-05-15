@@ -42,6 +42,7 @@ class Status {
       // Make a copy of the raw scripts and then strip it from
       // the data.
       $scripts = $raw['scripts'];
+      unset($raw['scripts']);
 
       $this->result['scripts'] = [];
 
