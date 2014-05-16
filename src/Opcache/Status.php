@@ -47,7 +47,6 @@ class Status {
       $this->result['scripts'] = [];
 
       // Loop over each script and strip the key.
-      // TODO: Test if preserving the key is necessary (i.e, symlinks)
       foreach($scripts as $key => $val) {
         $this->result['scripts'][] = $val;
       }
