@@ -7,6 +7,7 @@ class Status {
   public $statsd  = null;
   public $result = [];
 
+  // Takes either an array of options or a callable block
   public function __construct($options_or_block=false) {
     // Try to create a statsd handler via block or options
     if (is_callable($options_or_block)) {
