@@ -21,6 +21,7 @@ class Status {
     $this->result['config'] = $raw;
   }
 
+  // Returns a json_encoded array of opcache status
   public function status($with_scripts = false) {
 
     // Guard execution if the extension is not loaded.
