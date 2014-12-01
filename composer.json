@@ -16,6 +16,9 @@
     "ext-json": "*",
     "domnikl/statsd": "*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "4.3.*"
+  },
   "autoload": {
     "psr-4": {"Opcache\\": "src/Opcache"}
   }
