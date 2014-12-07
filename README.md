@@ -70,6 +70,15 @@ The JSON output is easy to ready and can be exposed as an internal HTTP endpoint
 
 ![JSON Output](http://stevencorona.github.io/opcache-json/images/screenshot.png)
 
+## Running the tests
+
+You -must- enable `opcache.enable_cli` to run the tests. PHP must be built with Zend Opcache.
+
+```
+$ composer install
+$ ./vendor/bin/phpunit -d opcache.enable_cli=1 tests/Opcache.php
+```
+
 #### The MIT License (MIT)
 
     Copyright (c) 2014 Steve Corona Inc.
