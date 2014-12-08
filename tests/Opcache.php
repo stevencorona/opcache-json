@@ -1,5 +1,11 @@
 <?php
 
+class MockClient {
+	public function gauge($k, $v) {
+		return true;
+	}
+}
+
 class OpcacheTest extends PHPUnit_Framework_TestCase {
 	public function testOpcache() {
 		$loaded = extension_loaded("Zend OPcache");
@@ -102,6 +108,17 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testStatsdBlock() {
+
+		$statsd = $this->getMockBuilder('MockClient')->getMock();
+		$statsd->expects($this->atLeastOnce())->method('gauge')->will($this->returnValue(true));
+
+
+		$opcache = new Opcache\Status(function() use ($statsd) {
+			return $statsd;
+		});
+		$result = $opcache->status(true);
+
+		$data = json_decode($result);
 
 	}
 }
