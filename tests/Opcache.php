@@ -99,26 +99,36 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 
 	}
 
+	private function getStatsdMock() {
+		$statsd = $this->getMockBuilder('MockClient')->getMock();
+		$statsd->expects($this->atLeastOnce())->method('gauge')->will($this->returnValue(true));
+
+		return $statsd;
+	}
+
 	public function testStatsdOptions() {
 
 	}
 
-	public function testNoStatsd() {
-
-	}
-
 	public function testStatsdBlock() {
-
-		$statsd = $this->getMockBuilder('MockClient')->getMock();
-		$statsd->expects($this->atLeastOnce())->method('gauge')->will($this->returnValue(true));
-
+		$statsd = $this->getStatsdMock();
 
 		$opcache = new Opcache\Status(function() use ($statsd) {
 			return $statsd;
 		});
-		$result = $opcache->status(true);
 
+		$result = $opcache->status();
 		$data = json_decode($result);
+	}
 
+	public function testStatsdBlockWithScripts() {
+		$statsd = $this->getStatsdMock();
+
+		$opcache = new Opcache\Status(function() use ($statsd) {
+			return $statsd;
+		});
+
+		$result = $opcache->status(true);
+		$data = json_decode($result);
 	}
 }
