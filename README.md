@@ -1,5 +1,7 @@
 # opcache-json
 
+[![](https://travis-ci.org/stevencorona/opcache-json.svg)](https://travis-ci.org/stevencorona/opcache-json)
+
 PHP 5.5 is awesome. It's fast, more modern, and has a bunch of great features. One of those new, awesome features is that it gets bundled with Zend Opcache by default— no more APC! Hooray!
 
 But this win brings some new burden. Zend Opcache has a TON of configuration settings and monitoring them is not that easy. The default output is a little bit clunky and wasn't really designed with modern devops in mind.
