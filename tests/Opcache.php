@@ -1,5 +1,7 @@
 <?php
 
+require 'vendor/autoload.php';
+
 class MockClient {
 	public function gauge($k, $v) {
 		return true;
