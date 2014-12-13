@@ -5,4 +5,4 @@ php:
   - 5.5
 
 before_script: composer install
-script: phpunit tests/Opcache.php
+script: phpunit -d opcache.enable_cli=1 tests/Opcache.php
