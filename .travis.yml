@@ -2,5 +2,13 @@ language: php
 php:
   - 5.5
 
-before_script: composer install
+before_install:
+  - composer selfupdate
+  - composer update
+  - composer install --no-interaction --prefer-source --dev
+
+before_script:
+  - composer dumpautoload
+  - phpenv config-add $TRAVIS_BUILD_DIR/tests/travis.ini
+
 script: phpunit -d opcache.enable_cli=1 tests/Opcache.php
