@@ -44,7 +44,6 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertObjectHasAttribute("restart_pending",        $data->status);
 		$this->assertObjectHasAttribute("restart_in_progress",    $data->status);
 		$this->assertObjectHasAttribute("memory_usage",           $data->status);
-		$this->assertObjectHasAttribute("interned_strings_usage", $data->status);
 		$this->assertObjectHasAttribute("opcache_statistics",     $data->status);
 
 		$this->assertFalse(isset($data->scripts));
@@ -67,7 +66,6 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertObjectHasAttribute("restart_pending",        $data->status);
 		$this->assertObjectHasAttribute("restart_in_progress",    $data->status);
 		$this->assertObjectHasAttribute("memory_usage",           $data->status);
-		$this->assertObjectHasAttribute("interned_strings_usage", $data->status);
 		$this->assertObjectHasAttribute("opcache_statistics",     $data->status);
 
 		$this->assertTrue(isset($data->scripts));
