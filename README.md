@@ -66,6 +66,11 @@ opcache.opcache_hit_rate:75|g
 
 > **Hint:** If you have a multi-server or multi-worker environment (hint: most of us do), you probably want to add your server hostname and PHP PID to the key namespace.
 
+## How to run this in production
+
+The obvious, but less than elegant, way might be embed this library into your application and create an endpoint. Workable, but not so clean.
+
+An interesting alternative:
 
 ## JSON Output
 The JSON output is easy to ready and can be exposed as an internal HTTP endpoint, which can be consumed by human eyes or a monitoring systems. It's pretty straightforward— the output looks like this</p>
