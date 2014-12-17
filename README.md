@@ -70,7 +70,7 @@ opcache.opcache_hit_rate:75|g
 
 The obvious, but less than elegant, way might be embed this library into your application and create an endpoint. Workable, but not so clean.
 
-An interesting alternative:
+Here's a better way to do it, if you're using PHP-FPM.
 
 ## JSON Output
 The JSON output is easy to ready and can be exposed as an internal HTTP endpoint, which can be consumed by human eyes or a monitoring systems. It's pretty straightforward— the output looks like this</p>
