@@ -70,7 +70,16 @@ opcache.opcache_hit_rate:75|g
 
 The obvious, but less than elegant, way might be embed this library into your application and create an endpoint. Workable, but not so clean.
 
-Here's a better way to do it, if you're using PHP-FPM.
+Here's a better way to do it, if you're using PHP-FPM. First, you need to install the `cgi-fcgi` utility (it's in the ubuntu package `apt-get install libfcgi0ldbl`).
+
+Next, clone this repository to somewhere on your server. For this demo, we'll pretend that it's in `/tmp/opcache-json`. I'll also assume that your PHP-FPM pool is running on `127.0.0.1:9000`. Now, here's the trick:
+
+    SCRIPT_NAME=/example.php \
+    SCRIPT_FILENAME=/tmp/opcache-json/example.php \
+    REQUEST_METHOD=GET \
+    cgi-fcgi -bind -connect 127.0.0.1:9000
+
+That will return the JSON status of your running PHP-FPM pool back to you. You can put it into a cron or something and automatically monitor it without having to pollute your running application with this code.
 
 ## JSON Output
 The JSON output is easy to ready and can be exposed as an internal HTTP endpoint, which can be consumed by human eyes or a monitoring systems. It's pretty straightforward— the output looks like this</p>
