@@ -106,10 +106,6 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 		return $statsd;
 	}
 
-	public function testStatsdOptions() {
-
-	}
-
 	public function testStatsdBlock() {
 		$statsd = $this->getStatsdMock();
 
