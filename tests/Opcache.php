@@ -19,14 +19,6 @@ class OpcacheTest extends PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf('Opcache\Status', $opcache);
 	}
 
-	public function testInitializeStatsdOptions() {
-
-	}
-
-	public function testInitializeStatsdBlock() {
-
-	}
-
 	public function testStatusNoScriptsNoStatsd() {
 		$opcache = new Opcache\Status;
 		$result = $opcache->status();
