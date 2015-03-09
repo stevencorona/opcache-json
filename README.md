@@ -88,7 +88,7 @@ The JSON output is easy to ready and can be exposed as an internal HTTP endpoint
 
 ## Running the tests
 
-You -must- enable `opcache.enable_cli` to run the tests. PHP must be built with Zend Opcache.
+You **must** enable `opcache.enable_cli` to run the tests. PHP must be built with Zend Opcache.
 
 ```
 $ composer install
