@@ -95,7 +95,7 @@ $ composer install
 $ ./vendor/bin/phpunit -d opcache.enable_cli=1 tests/Opcache.php
 ```
 
-#### The MIT License (MIT)
+## The MIT License (MIT)
 
     Copyright (c) 2014 Steve Corona Inc.
 
