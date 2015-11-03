@@ -16,6 +16,15 @@ $opcache = new Opcache\Status(function() {
 
 });
 
+// If you want to send extra stats about state of Opcache, you can do it like this:
+
+// $opcache->send_extra_stats(array (
+//  'opcache_enabled'     => true,
+//  'cache_full'          => true,
+//  'restart_pending'     => true,
+//  'restart_in_progress' => true,
+// ));
+
 // This will output the opcache status AND send it to statsd if previously
 // configured
 echo $opcache->status(true);

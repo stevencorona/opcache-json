@@ -66,6 +66,26 @@ opcache.opcache_hit_rate:75|g
 
 > **Hint:** If you have a multi-server or multi-worker environment (hint: most of us do), you probably want to add your server hostname and PHP PID to the key namespace.
 
+## Extra stats
+
+If you want to send extra stats about state of Opcache, meaning one of the following metrics:
+
+````
+opcache.opcache_enabled|1|g
+opcache.cache_full|0|g
+opcache.restart_pending|0|g
+opcache.restart_in_progress|0|g
+```
+
+You can do it by calling Opcache\Status->send_extra_stats() method before calling status():
+
+```php
+$opcache->send_extra_stats(array (
+  'opcache_enabled'     => true,
+  'cache_full'          => true,
+));
+```
+
 ## How to run this in production
 
 The obvious, but less than elegant, way might be embed this library into your application and create an endpoint. Workable, but not so clean.
