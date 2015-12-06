@@ -7,6 +7,20 @@ class Status {
   public $statsd  = null;
   public $result = [];
 
+  private $supported_extra_stats = array(
+      'opcache_enabled',
+      'cache_full',
+      'restart_pending',
+      'restart_in_progress'
+  );
+
+  public $send_extra_stats = array(
+      'opcache_enabled'     => false,
+      'cache_full'          => false,
+      'restart_pending'     => false,
+      'restart_in_progress' => false,
+  );
+
   // Takes either an array of options or a callable block
   public function __construct($options_or_block=false) {
     // Try to create a statsd handler via block or options
@@ -70,7 +84,23 @@ class Status {
     return json_encode($this->result);
   }
 
+  public function send_extra_stats(array $send_extra_stats) {
+      foreach ($send_extra_stats as $extra_stat_name => $send) {
+          if (in_array($extra_stat_name, $this->supported_extra_stats)) {
+              $this->send_extra_stats[$extra_stat_name] = $send;
+          }
+      }
+      return true;
+  }
+
   protected function send_to_statsd() {
+
+    foreach ($this->send_extra_stats as $k => $send) {
+        if ($send === true && in_array($k, $this->supported_extra_stats)) {
+            $this->statsd->gauge($k, ($this->result["status"][$k] == true) ? 1 : 0);
+        }
+    }
+    
     foreach($this->result["status"]["memory_usage"] as $k => $v) {
       $this->statsd->gauge($k, $v);
     }
