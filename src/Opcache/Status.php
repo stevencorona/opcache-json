@@ -91,7 +91,7 @@ class Status {
 
     $opts = array_merge($opts, $default);
 
-    $connection = new \Domnikl\Statsd\Connection\Socket($opts["host"],
+    $connection = new \Domnikl\Statsd\Connection\UdpSocket($opts["host"],
                                                         $opts["port"],
                                                         $opts["timeout"],
                                                         $opts["persistent"]);
