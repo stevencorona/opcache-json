@@ -11,7 +11,7 @@ require 'vendor/autoload.php';
 // Or configure the Statsd connection with a block
 $opcache = new Opcache\Status(function() {
 
-  $c   = new \\Domnikl\Statsd\Connection\UdpSocket("127.0.0.1", "8125");
+  $c   = new \Domnikl\Statsd\Connection\UdpSocket("127.0.0.1", "8125");
   return new \Domnikl\Statsd\Client($c, "opcache");
 
 });
