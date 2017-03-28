@@ -70,7 +70,7 @@ opcache.opcache_hit_rate:75|g
 
 If you want to send extra stats about state of Opcache, meaning one of the following metrics:
 
-````
+```
 opcache.opcache_enabled|1|g
 opcache.cache_full|0|g
 opcache.restart_pending|0|g
